@@ -10,32 +10,64 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
 .traffic-light {
-    background-color: black;
+    background-color: #212529;
     padding: 10px;
-    display: inline-block;
+    display: inline-flex;
     margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+    margin-top: 5px;
+
 }
 
-.ligth {
+.boton {
+    margin-top: 5px;
+    padding: 10px;
+    
+}
+
+.btn-dark {
+    margin-right: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+ 
+}
+
+.light {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: blue;
+    background-color: rgb(13, 146, 13);
 }
 
 .red {
-    background-color: red;
+    background-color: #AD2121;
+}
+
+
+.orange {
+    background-color: #cc6119;
 }
 
 .yellow {
-    background-color: yellow;
-}
-
-.green {
-    background-color: green;
+    background-color: #c7ad1c;
 }
 
 .glow {
     box-shadow: 0px 0px 9px 4px #747DE8;
+}
+
+.video {
+    position: fixed;
+    width: 100%;
+    z-index: -1;
+}
+
+p {
+    display: flex;
+    justify-content: right;
+    font-size: 20px;
+    font-style: italic;
+    margin-top: -100px; 
 }

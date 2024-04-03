@@ -3,25 +3,25 @@ import React, { useEffect, useState } from "react";
 
 //create your first component
 const Home = () => {
-	//Definimos un estado, porque queremos que el valor inicial vaya modificándose. selectedColor almacena el color actual del semáforo que enste caso será "yellow"
-	const [ selectedColor, setSelectedColor ] = useState("yellow");
-	const [ purpleActive, setPurpleActive]  = useState("false");
+	//Definimos un estado, porque queremos que el valor inicial vaya modificándose. selectedColor almacena el color actual del semáforo que enste caso será "orange"
+	const [ selectedColor, setSelectedColor ] = useState("red");
+	const [ purpleActive, setPurpleActive]  = useState(false);
 	const [ phrase, setPhrase ] = useState("");
 
 	useEffect(() => {
 		//Actualizar la frase según el color seleccionado
 		switch (selectedColor) {
-			case "green":
-				setPhrase("Frase 1")
-				break;
 			case "yellow":
-				setPhrase("Frase 2")
+				setPhrase("Almost ready but keep calm");
+				break;
+			case "orange":
+				setPhrase("You can start pressing the clutch");
 				break;
 			case "red":
-				setPhrase("Frase 3")
+				setPhrase("Don't even think about speeding up");
 				break;
 			case "purple":
-				setPhrase("Frase 4")
+				setPhrase("");
 				break;
 			default:
 				setPhrase("");
@@ -30,49 +30,67 @@ const Home = () => {
 	
 	const toggleColor = () => {
 		if(selectedColor === "red") {
-			setSelectedColor("yellow");
+			setSelectedColor("orange");
+		} else if (selectedColor === "orange") {
+			setSelectedColor ("yellow") 
 		} else if (selectedColor === "yellow") {
-			selectedColor ("green") 
-		} else if (selectedColor === "green") {
-			selectedColor ("purple")
+			setSelectedColor ("purple")
 		} else {
 			setSelectedColor("red");
 		}
 	};
 
-	const togglePurple = () => {
+	const toggleGreen = () => {
 		setPurpleActive(!purpleActive);
 	};
 
 	//Todo lo que esté en return es el contenido del componente
 	return (
-		<div className="traffic-light">
-			{/* En HTML sería <div onclick = setSelectedColor("red") Como estamos en jsx tendremos que poner la función en {} porque es JS */}
-			{/* <div onClick = {() = setSelectedColor("red")} */}
-			<div 
-			//La función se activa cuando se pulse en la luz roja setSelectedColor("red")
-			onClick={() => setSelectedColor("red")}
-			className={"ligth red" + (selectedColor === "red" ? " glow" : "")
-			}></div>
-			<div 
-			onClick={() => setSelectedColor("yellow")}
-			className={"ligth yellow" + (selectedColor === "yellow" ? " glow" : "")}></div>
-			<div 
-			onClick={() => setSelectedColor("green")}
-			className={"ligth green" + (selectedColor === "green" ? " glow" : "")}></div>
-			{purpleActive && (
-				<div
-				onClick={() => setSelectedColor("purple")}
-				className={"light purple" + (selectedColor === "purple" ? " glow" : "")}>
+		<>
+		<video className="video" autoPlay loop src="https://videos.pexels.com/video-files/5638438/5638438-uhd_3840_2160_25fps.mp4"/>
+		<div className="container">
+			<div className="row">
+				<div className="col-md-12">
+					<div className="traffic-light">
+						{/* En HTML sería <div onclick = setSelectedColor("red") Como estamos en jsx tendremos que poner la función en {} porque es JS */}
+						{/* <div onClick = {() = setSelectedColor("red")} */}
+						<div 
+						//La función se activa cuando se pulse en la luz roja setSelectedColor("red")
+							onClick={() => setSelectedColor("red")}
+							className={"light red" + (selectedColor === "red" ? " glow" : "")}>
+						</div>
+						<div 
+							onClick={() => setSelectedColor("orange")}
+							className={"light orange" + (selectedColor === "orange" ? " glow" : "")}>
+						</div>
+						<div 
+							onClick={() => setSelectedColor("yellow")}
+							className={"light yellow" + (selectedColor === "yellow" ? " glow" : "")}>
+						</div>
+						{purpleActive && (
+							<div
+								onClick={() => setSelectedColor("purple")}
+								className={"light purple" + (selectedColor === "purple" ? " glow" : "")}>
+							</div>
+						)}
+						
+					</div>
+					<div className="boton">
+						<button type="button" class="btn btn-dark uno" onClick={toggleColor}>Change color</button>
+						<button type="button" class="btn btn-dark dos" onClick={toggleGreen}>{purpleActive ? "Turn OFF the new ligth" : "Turn ON the new ligth"}</button>
+					</div>
+					
 				</div>
-			)}
-			<div>
-				<button className="boton1" onClick={toggleColor}>CAMBIAR COLOR</button>
 			</div>
-			<div>
-				<button className="boton2" onClick={togglePurple}>{purpleActive ? "DESACTIVAR PURPURA" : "ACTIVAR PURPURA"}</button>
+			<div className="row">
+				<div className="col-md-12">
+					<div className="frase frase-grande">
+						<p>{phrase}</p>
+					</div>
+				</div>
 			</div>
 		</div>
+		</>
 	);
 };
 
