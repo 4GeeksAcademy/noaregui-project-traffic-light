@@ -20,8 +20,8 @@ const Home = () => {
 			case "red":
 				setPhrase("Don't even think about speeding up");
 				break;
-			case "purple":
-				setPhrase("");
+			case "green":
+				setPhrase("GO!");
 				break;
 			default:
 				setPhrase("");
