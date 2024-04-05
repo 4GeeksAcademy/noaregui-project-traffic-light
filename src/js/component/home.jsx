@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 const Home = () => {
 	//Definimos un estado, porque queremos que el valor inicial vaya modificándose. selectedColor almacena el color actual del semáforo que enste caso será "orange"
 	const [ selectedColor, setSelectedColor ] = useState("red");
-	const [ purpleActive, setPurpleActive]  = useState(false);
+	const [ greenActive, setgreenActive]  = useState(false);
 	const [ phrase, setPhrase ] = useState("");
 
 	useEffect(() => {
@@ -21,7 +21,7 @@ const Home = () => {
 				setPhrase("Don't even think about speeding up");
 				break;
 			case "green":
-				setPhrase("GO!");
+				setPhrase(<span className="go">GO!</span>);
 				break;
 			default:
 				setPhrase("");
@@ -34,14 +34,14 @@ const Home = () => {
 		} else if (selectedColor === "orange") {
 			setSelectedColor ("yellow") 
 		} else if (selectedColor === "yellow") {
-			setSelectedColor ("purple")
+			setSelectedColor ("green")
 		} else {
 			setSelectedColor("red");
 		}
 	};
 
 	const toggleGreen = () => {
-		setPurpleActive(!purpleActive);
+		setgreenActive(!greenActive);
 	};
 
 	//Todo lo que esté en return es el contenido del componente
@@ -67,17 +67,17 @@ const Home = () => {
 							onClick={() => setSelectedColor("yellow")}
 							className={"light yellow" + (selectedColor === "yellow" ? " glow" : "")}>
 						</div>
-						{purpleActive && (
+						{greenActive && (
 							<div
-								onClick={() => setSelectedColor("purple")}
-								className={"light purple" + (selectedColor === "purple" ? " glow" : "")}>
+								onClick={() => setSelectedColor("green")}
+								className={"light green" + (selectedColor === "green" ? " glow" : "")}><h1 className="ready">Ready?</h1>
 							</div>
 						)}
 						
 					</div>
 					<div className="boton">
 						<button type="button" class="btn btn-dark uno" onClick={toggleColor}>Change color</button>
-						<button type="button" class="btn btn-dark dos" onClick={toggleGreen}>{purpleActive ? "Turn OFF the new ligth" : "Turn ON the new ligth"}</button>
+						<button type="button" class="btn btn-dark dos" onClick={toggleGreen}>{greenActive ? "Turn OFF the new ligth" : "Turn ON the new ligth"}</button>
 					</div>
 					
 				</div>
